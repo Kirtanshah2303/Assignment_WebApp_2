@@ -14,6 +14,9 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
+import Assignment from 'app/assignment/Assignment';
+import { Course } from 'app/course/course';
+import Sidebar from 'app/assignment/Sidebar';
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ 'app/modules/account'),
@@ -38,6 +41,11 @@ const Routes = () => {
         <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
         <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
         <ErrorBoundaryRoute path="/" exact component={Home} />
+        <PrivateRoute exact path="/course" component={Course} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        <PrivateRoute exact path="/assignment" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        <PrivateRoute exact path="/assignment" component={Assignment} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        {/*<PrivateRoute exact path="/assignment/assignment1" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />*/}
+        {/*<PrivateRoute exact path="/assignment/assignment1" component={Assignment} hasAnyAuthorities={[AUTHORITIES.USER]} />*/}
         <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
         <ErrorBoundaryRoute component={PageNotFound} />
       </Switch>
