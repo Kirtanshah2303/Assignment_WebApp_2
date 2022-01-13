@@ -1,7 +1,11 @@
 $header-color: #fff;
 $header-color-secondary: #bbb;
 $header-color-hover: darken($header-color, 20%);
-
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@550;548&display=swap');
+.ms-auto {
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+}
 /* ==========================================================================
 Developement Ribbon
 ========================================================================== */
@@ -38,13 +42,14 @@ Developement Ribbon
 Navbar styles
 ========================================================================== */
 .jh-navbar {
-  background-color: #353d47;
+  background-color: #0d3f67;
   padding: 0.2em 1em;
   .profile-image {
     margin: -10px 0px;
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    font-weight: 100;
   }
   .dropdown-item.active,
   .dropdown-item.active:focus,

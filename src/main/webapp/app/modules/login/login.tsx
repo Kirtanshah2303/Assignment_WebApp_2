@@ -24,7 +24,7 @@ export const Login = (props: RouteComponentProps<any>) => {
   };
 
   const { location } = props;
-  const { from } = (location.state as any) || { from: { pathname: '/', search: location.search } };
+  const { from } = (location.state as any) || { from: { pathname: '/course', search: location.search } };
   if (isAuthenticated) {
     return <Redirect to={from} />;
   }

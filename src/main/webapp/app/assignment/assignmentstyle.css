@@ -1,0 +1,31 @@
+.side {
+  box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171/ 24%) 0px 16px 32px -4px;
+  position: fixed;
+}
+
+.navlink {
+  color: rgb(0, 0, 0);
+  transition: 0.2s ease;
+  border-radius: 1rem;
+}
+.navlink:hover {
+  background: #ecf2f9;
+}
+.activeLink .navlink {
+  background: #0d3f67;
+  color: #fff;
+}
+.assignmentdetails {
+  /*margin: 3rem;*/
+  /*width: 50rem;*/
+  /* box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px,
+    rgb(145 158 171 / 24%) 0px 16px 32px -4px; */
+  /* border: 2px solid black; */
+  padding: 2rem;
+}
+.assigninternal {
+  margin-left: 18rem;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) 0px 16px 32px -4px;
+}
