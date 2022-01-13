@@ -66,6 +66,10 @@ export const RegisterPage = () => {
               type="email"
               validate={{
                 required: { value: true, message: 'Your email is required.' },
+                pattern: {
+                  value: /^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[charusat.edu.in|charusat.ac.in]+$/,
+                  message: 'Your email is invalid.',
+                },
                 minLength: { value: 5, message: 'Your email is required to be at least 5 characters.' },
                 maxLength: { value: 254, message: 'Your email cannot be longer than 50 characters.' },
                 validate: v => isEmail(v) || 'Your email is invalid.',

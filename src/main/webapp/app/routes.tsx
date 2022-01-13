@@ -40,6 +40,8 @@ const Routes = () => {
         <ErrorBoundaryRoute path="/" exact component={Home} />
         <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
         <ErrorBoundaryRoute component={PageNotFound} />
+
+        {/*<PrivateRoute path={"/assignment"} hasAnyAuthorities={[AUTHORITIES.USER]} component={Demo} />*/}
       </Switch>
     </div>
   );
