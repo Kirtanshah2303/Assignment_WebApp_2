@@ -41,9 +41,10 @@ const Routes = () => {
         <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
         <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
         <ErrorBoundaryRoute path="/" exact component={Home} />
-        <PrivateRoute exact path="/course" component={Course} hasAnyAuthorities={[AUTHORITIES.USER]} />
-        <PrivateRoute exact path="/assignment" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />
-        <PrivateRoute exact path="/assignment" component={Assignment} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        <PrivateRoute path="/course" component={Course} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        <PrivateRoute exact path="/assignments" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />
+        {/*<PrivateRoute exact path="/assignments/assignment1" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />*/}
+        <PrivateRoute path="/assignments" component={Assignment} hasAnyAuthorities={[AUTHORITIES.USER]} />
         {/*<PrivateRoute exact path="/assignment/assignment1" component={Sidebar} hasAnyAuthorities={[AUTHORITIES.USER]} />*/}
         {/*<PrivateRoute exact path="/assignment/assignment1" component={Assignment} hasAnyAuthorities={[AUTHORITIES.USER]} />*/}
         <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />

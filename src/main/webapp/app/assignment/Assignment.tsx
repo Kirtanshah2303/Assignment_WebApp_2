@@ -1,8 +1,9 @@
 import React from 'react';
 import './assignmentstyle.css';
-import { Route, Switch, useRouteMatch, useParams } from 'react-router-dom';
+import { Switch, useRouteMatch, useParams } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
+import { Button } from 'react-bootstrap';
 
 const Assignment = () => {
   const { path } = useRouteMatch();
@@ -11,10 +12,8 @@ const Assignment = () => {
       <Sidebar />
       <Switch>
         <div>
-          <Route path={`${path}/:asign`}>
-            <Sidebar />
-            <TestWhich txt={`${path}/:asign`} />
-          </Route>
+          {/*<Sidebar />*/}
+          <TestWhich txt={`${path}/:asign`} />
         </div>
       </Switch>
     </div>
@@ -51,7 +50,7 @@ const TestWhich = ({ txt }) => {
           <br />
           brew install openssl
           <br />
-          <span>echo &#39export PATH=&#34/usr/local/opt/openssl/bin:$PATH&#34&#39 ~/.bash_profile</span>
+          <span>echo &#39;export PATH=&#34;/usr/local/opt/openssl/bin:$PATH&#34;&#39; ~/.bash_profile</span>
           <br />
           source ~/.bash_profile
           <br />
@@ -74,6 +73,16 @@ const TestWhich = ({ txt }) => {
           Upload the public key to server “Upload Public Key” Button
           <br />
           <br />
+          <Button variant="primary">
+            <h6>Upload</h6>
+          </Button>
+          <br />
+          <br />
+          <Button variant="primary">
+            <h6>Submit</h6>
+          </Button>
+          <br />
+          <br />
           Server has generated the random no. in file and encrypted it with public key provided by you.
           <br /> Server has used following command to encrypt the file
           <br />
@@ -88,6 +97,11 @@ const TestWhich = ({ txt }) => {
           <br />
           <br />
           Paste the random no. in the following text box and validate the no.
+          <br />
+          <br />
+          <Button variant="primary">
+            <h6>Validate</h6>
+          </Button>
           <br />
           <br />
           You have successfully completed the assignment.

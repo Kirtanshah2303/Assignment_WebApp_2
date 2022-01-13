@@ -32,7 +32,7 @@ export const Course = () => {
         <p>
           <i className="fas fa-chalkboard-teacher"></i>&nbsp;&nbsp;<span>Parth Shah</span>
         </p>
-        <Button onClick={() => history.push('/assignment')} variant="primary">
+        <Button onClick={() => history.push('/assignments')} variant="primary">
           <h6>View Assignments</h6>
         </Button>
       </Card.Body>
