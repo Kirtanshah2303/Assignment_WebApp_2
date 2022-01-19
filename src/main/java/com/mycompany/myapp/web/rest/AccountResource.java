@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Assignment_1;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.SecurityUtils;
@@ -16,7 +17,12 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,6 +31,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class AccountResource {
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     private static class AccountResourceException extends RuntimeException {
 
@@ -162,6 +171,35 @@ public class AccountResource {
             // Pretend the request has been successful to prevent checking which emails really exist
             // but log that an invalid attempt has been made
             log.warn("Password reset requested for non existing mail");
+        }
+    }
+
+    //This API is for find username from registered email.
+
+    @PostMapping("/account/findUsername")
+    public ResponseEntity<Object> findUsername(@RequestParam("email") String mail) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(mail));
+        User u1 = mongoTemplate.findOne(query, User.class);
+        if (u1 != null) {
+            String username = u1.getLogin();
+            System.out.println("Username in findUsername is -->" + username);
+            String messageForMail =
+                "Hello Student , \n" +
+                "Your username for Assignment Web Application is " +
+                username +
+                "\n" +
+                "Remember this username for future reference also \n" +
+                "\n" +
+                "Regards," +
+                "\n" +
+                "Assignment WebApp Team";
+
+            mailService.sendEmail(mail, "Request for username for Assignment WebApp", messageForMail, false, false);
+
+            return new ResponseEntity<Object>("Username sent to your registered email", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>("Invalid email entered", HttpStatus.BAD_REQUEST);
         }
     }
 

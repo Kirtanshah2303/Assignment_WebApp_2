@@ -74,6 +74,9 @@ const LoginModal = (props: ILoginModalProps) => {
             </Link>
           </Alert>
           <Alert color="warning">
+            <Link to="/account/findUsername/request">Did you forget your username?</Link>
+          </Alert>
+          <Alert color="warning">
             <span>You don&apos;t have an account yet?</span> <Link to="/account/register">Register a new account</Link>
           </Alert>
         </ModalBody>

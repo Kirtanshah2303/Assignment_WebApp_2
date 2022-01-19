@@ -17,6 +17,7 @@ import { AUTHORITIES } from 'app/config/constants';
 import Assignment from 'app/assignment/Assignment';
 import { Course } from 'app/course/course';
 import Sidebar from 'app/assignment/Sidebar';
+import findUsername from 'app/modules/account/find-username/findUsername';
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ 'app/modules/account'),
@@ -37,6 +38,7 @@ const Routes = () => {
         <ErrorBoundaryRoute path="/account/register" component={Register} />
         <ErrorBoundaryRoute path="/account/activate/:key?" component={Activate} />
         <ErrorBoundaryRoute path="/account/reset/request" component={PasswordResetInit} />
+        <ErrorBoundaryRoute path="/account/findUsername/request" component={findUsername} />
         <ErrorBoundaryRoute path="/account/reset/finish/:key?" component={PasswordResetFinish} />
         <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
         <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} />
