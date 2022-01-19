@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './assignmentstyle.css';
 import { Switch, useRouteMatch, useParams } from 'react-router-dom';
+import { useAppSelector } from 'app/config/store';
 
 import Sidebar from './Sidebar';
 import { Button, Form, Row } from 'react-bootstrap';
@@ -9,25 +10,43 @@ import { Axios } from 'axios';
 const Assignment = () => {
   const { path } = useRouteMatch();
   const [selectedFile, setSelectedFile] = useState();
-  const [stringVerify, setStringVerify] = useState();
+  const [stringVerify, setStringVerify] = useState('');
   const [isFilePicked, setIsFilePicked] = useState(false);
+
+  var bearer = 'Bearer ';
+  var token = sessionStorage.getItem('jhi-authenticationToken');
+
+  token = token.slice(1, -1);
+
+  bearer = bearer + token;
+
+  const account = useAppSelector(state => state.authentication.account);
+
+  // bearer = bearer.slice(1,-1);
 
   const changeHandler = event => {
     setSelectedFile(event.target.files[0]);
   };
 
   const changeHandler2 = event => {
-    setStringVerify(event.target.text);
+    setStringVerify(event.target.value);
   };
 
   const handleSubmission = () => {
     const formData = new FormData();
 
-    formData.append('file', selectedFile);
+    console.log(bearer);
 
-    fetch('/uploadFile', {
+    formData.append('file', selectedFile);
+    formData.append('username', account.login);
+
+    fetch('/api/uploadFile', {
       method: 'POST',
       body: formData,
+      headers: {
+        accept: '*/*',
+        Authorization: bearer,
+      },
     })
       .then(response => response.json())
       .then(result => {
@@ -42,11 +61,15 @@ const Assignment = () => {
     const formData = new FormData();
 
     formData.append('str', stringVerify);
-    formData.append('username', '19IT132');
+    formData.append('username', account.login);
 
-    fetch('/validate', {
+    fetch('/api/validate', {
       method: 'POST',
       body: formData,
+      headers: {
+        accept: '*/*',
+        Authorization: bearer,
+      },
     })
       .then(response => response.json())
       .then(result => {
