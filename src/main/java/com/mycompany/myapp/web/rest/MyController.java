@@ -4,6 +4,7 @@ import com.mycompany.myapp.domain.Assignment_1;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.Assignment_1_Repo;
 import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
 import java.io.*;
 import java.util.Date;
@@ -44,6 +45,8 @@ public class MyController {
     JHipsterProperties jHipsterProperties;
 
     JavaMailSender javaMailSender;
+
+    private MailService mailService;
 
     //    UserService user;
     //    String studentID;
@@ -121,6 +124,12 @@ public class MyController {
 
         System.out.println("File Encryption Started");
         encryptFile(file, random_string, studentID, email);
+        //      String message =   mailService.sendEmailwithAttachment(email,"Cipher text file for CRNS Assignment-1","Hello Student \n" +
+        //            "Use this attached txt file as your cipher text and complete your assignment according to given instruction \n" +
+        //            "\n" +
+        //            "Regards, \n" +
+        //            "Assignment WebApp Team",false,studentID,false);
+        //        System.out.println("File sent to student's registered email successfully");
         System.out.println("File Encrypted Successfully");
 
         //        Optional<String> na1me = SecurityUtils.getCurrentUserLogin();
@@ -182,6 +191,12 @@ public class MyController {
             "openssl rsautl -encrypt -in " + studentID + ".txt -pubin -inkey " + studentID + ".key -out " + studentID + "_cipher.txt";
         Process process = Runtime.getRuntime().exec(command, null, dir);
         System.out.println("Cipher Test Generated Successfully");
+        //        mailService.sendEmailwithAttachment(emailTo,"Cipher text file for CRNS Assignment-1","Hello Student \n" +
+        //            "Use this attached txt file as your cipher text and complete your assignment according to given instruction \n" +
+        //            "\n" +
+        //            "Regards, \n" +
+        //            "Assignment WebApp Team",true,studentID,false);
+        //        System.out.println("File sent to student's registered email successfully");
         //        MimeMessage message = javaMailSender.createMimeMessage();
         //        try {
         //            MimeMessageHelper helper = new MimeMessageHelper(message, true);

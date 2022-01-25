@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const Brand = () => (
   <NavbarBrand tag={Link} to="/" className="brand-logo">
     {/*<BrandIcon />*/}
-    <span className="brand-title">Assignment WebApp</span>
+    <span className="brand-title">CHARUSAT Classroom</span>
     {/*<span className="navbar-version">{VERSION}</span>*/}
   </NavbarBrand>
 );
